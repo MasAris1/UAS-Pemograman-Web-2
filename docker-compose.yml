@@ -10,8 +10,8 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules # Mencegah override node_modules di dalam kontainer
-    environment:
-      - NODE_ENV=development
+    env_file:
+      - ./backend/.env
 
   frontend:
     build:
@@ -23,7 +23,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
       - /app/.next
-    environment:
-      - NODE_ENV=development
+    env_file:
+      - ./frontend/.env
     depends_on:
       - backend # Memastikan backend berjalan lebih dulu
